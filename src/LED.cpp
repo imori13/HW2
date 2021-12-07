@@ -15,6 +15,6 @@ void LED::Update(float updateTime){
   if(m_Timer >= updateTime){
     m_Light = !m_Light;
     m_Gpio->output(m_Light);
-    m_Light = 0;
+    m_Timer = 0;
   }
 }

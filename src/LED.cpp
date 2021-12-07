@@ -2,20 +2,19 @@
 #include "Debug.h"
 #include "Timer.h"
 
-
 LED::LED(uint8_t pinMode){
-  m_isLED = (pinMode==Pinout::LED);
+  m_Light = (pinMode==Pinout::LED);
 
-  gpio = nullptr;
-  gpio = new Gpio(pinMode,Gpio::Mode::OUT);
+  m_Gpio = nullptr;
+  m_Gpio = new Gpio(pinMode,Gpio::Mode::OUT);
 }
 
 void LED::Update(float updateTime){
-  // オン
-  gpio->output(m_isLED);
-  Timer::Delay(updateTime);
+  m_Timer += Timer::g_FrameTime;
 
-  // オフ
-  gpio->output(!m_isLED);
-  Timer::Delay(updateTime);
+  if(m_Timer >= updateTime){
+    m_Light = !m_Light;
+    m_Gpio->output(m_Light);
+    m_Light = 0;
+  }
 }

@@ -20,6 +20,4 @@ void loop() {
 
     baseLED.Update(0.1f);
     moduleLED.Update(0.1f);
-
-    Debug::Print(Timer::g_ElapsedTime);
 }

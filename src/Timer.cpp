@@ -3,23 +3,18 @@
 
 namespace{
   constexpr double s_Modular = 1000;  // 1秒単位のdoubleで扱いたいので1000ms割る
-  constexpr uint64_t s_MilliFrame = 16;
-  uint64_t s_MilliElapsed = 0;
-  uint64_t s_DestFrame = 0; // 1フレーム経過後のミリ秒
+  double s_DestFrame = 0; // 1フレーム経過後のミリ秒
 }
 
 namespace Timer{
   double g_ElapsedTime = 0;
-  double g_FrameTime = s_MilliFrame / s_Modular;
 
   void Update(){
-    g_ElapsedTime = millis() / s_Modular;
-
-    // 1frame待機
+    // 1frame分待機
     do{
-      s_MilliElapsed = millis();
-    }while(s_MilliElapsed < s_DestFrame);
-    s_DestFrame += s_MilliFrame;
+      g_ElapsedTime = millis() / s_Modular;
+    }while(g_ElapsedTime < s_DestFrame);
+    s_DestFrame += g_FrameTime;
   }
 
   // 待機

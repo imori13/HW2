@@ -6,8 +6,8 @@ class LED{
 public:
   LED(uint8_t pinMode);
   void Update(float updateTime);
-
 private:
-  Gpio* gpio;
-  bool m_isLED;
+  Gpio* m_Gpio;
+  bool m_Light;
+  float m_Timer;
 };

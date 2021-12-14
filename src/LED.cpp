@@ -5,16 +5,25 @@
 LED::LED(uint8_t pinMode){
   m_Light = (pinMode==Pinout::LED);
 
-  m_Gpio = nullptr;
-  m_Gpio = new Gpio(pinMode,Gpio::Mode::OUT);
+  m_pGpio = nullptr;
+  m_pGpio = new Gpio(pinMode,Gpio::Mode::OUT);
 }
 
-void LED::Update(float updateTime){
-  m_Timer += Timer::g_FrameTime;
+LED::~LED(){
+  delete m_pGpio;
+}
 
-  if(m_Timer >= updateTime){
+void LED::Update()
+{
+
+}
+
+void LED::BlinkUpdate(float updateTime){
+  m_LEDTimer += Timer::g_FrameTime;
+
+  if(m_LEDTimer >= updateTime){
     m_Light = !m_Light;
-    m_Gpio->output(m_Light);
-    m_Timer = 0;
+    m_pGpio->output(m_Light);
+    m_LEDTimer = 0;
   }
 }

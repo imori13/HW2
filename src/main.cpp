@@ -1,23 +1,18 @@
 #include <Arduino.h>
 #include <pinout.h>
 
-#include "Debug.h"
 #include "Timer.h"
-#include "LED.h"
-
-
-namespace {
-    LED baseLED(Pinout::LED);
-    LED moduleLED(Pinout::D6_PWM_READY);
-}
+#include "Input.h"
+#include "GameScene.h"
 
 void setup() {
     Serial.begin(115200);
+
+    GameScene::Initialize();
 }
 
 void loop() {
     Timer::Update();
-
-    baseLED.Update(0.1f);
-    moduleLED.Update(0.1f);
+    Input::Update();
+    GameScene::Update();
 }

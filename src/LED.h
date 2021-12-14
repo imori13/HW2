@@ -5,9 +5,12 @@
 class LED{
 public:
   LED(uint8_t pinMode);
-  void Update(float updateTime);
+  virtual ~LED();
+  void Update();
+  void BlinkUpdate(float updateTime);
+protected:
+  Gpio* m_pGpio;
 private:
-  Gpio* m_Gpio;
   bool m_Light;
-  float m_Timer;
+  float m_LEDTimer;
 };

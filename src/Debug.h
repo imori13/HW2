@@ -6,7 +6,12 @@
 namespace Debug{
 
 template <typename T>
-  void Print(T msg){
+  void Log(T msg){
+    Serial.print(msg);
+  }
+  
+template <typename T>
+  void LogLine(T msg){
     Serial.println(msg);
   }
 }

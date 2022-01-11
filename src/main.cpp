@@ -1,9 +1,9 @@
 #include <Arduino.h>
 #include <pinout.h>
 
-#include "Timer.h"
-#include "Input.h"
-#include "GameScene.h"
+#include "Device/Timer.h"
+#include "Device/Input.h"
+#include "GameLogic/GameScene.h"
 
 void setup() {
     Serial.begin(115200);

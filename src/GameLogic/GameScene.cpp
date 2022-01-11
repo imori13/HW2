@@ -1,7 +1,7 @@
 #include "GameScene.h"
-#include "LED.h"
-#include "Input.h"
-#include "Debug.h"
+#include "Device/LED.h"
+#include "Device/Input.h"
+#include "Device/Debug.h"
 #include <pinout.h>
 
 #define BUTTON_COUNT 3

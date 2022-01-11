@@ -9,11 +9,14 @@ namespace{
 namespace Timer{
   double g_ElapsedTime = 0;
 
-  void Update(){
+  void Update()
+  {
     // 1frame分待機
-    do{
+    do
+    {
       g_ElapsedTime = millis() / s_Modular;
-    }while(g_ElapsedTime < s_DestFrame);
+    } while ( g_ElapsedTime < s_DestFrame );
+    
     s_DestFrame += g_FrameTime;
   }
 

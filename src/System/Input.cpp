@@ -6,12 +6,17 @@ namespace
 {
     Button** s_ButtonArray;
     uint8_t s_Count;
-    uint8_t s_CurrentHead;
+    uint8_t s_Head;
 }
 
 namespace Input
 {
     void CheckIndex(uint8_t checkIndex);
+
+    uint32_t size()
+    {
+        return s_Head;
+    }
 
     void Initialize(uint8_t buttonLimit)
     {
@@ -21,16 +26,16 @@ namespace Input
 
     void AddButton(uint8_t pin)
     {
-        CheckIndex(s_CurrentHead);
+        CheckIndex(s_Head);
 
         // add button
-        s_ButtonArray[s_CurrentHead] = new Button(pin);
-        ++s_CurrentHead;
+        s_ButtonArray[s_Head] = new Button(pin);
+        ++s_Head;
     }
 
     void Update()
     {
-        for(auto i = 0u; i < s_CurrentHead; ++i)
+        for(auto i = 0u; i < size(); ++i)
         {
             s_ButtonArray[i]->Update();
         }

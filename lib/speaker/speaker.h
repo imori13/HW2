@@ -15,7 +15,7 @@ private:
     static Speaker* self;
     static void playStep();
     uint8_t pinId;
-    Gpio* dac = NULL;
+    Gpio* dac = nullptr;
     const uint8_t* playing;
     const uint8_t* eof;
 };

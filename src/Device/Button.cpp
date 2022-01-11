@@ -1,17 +1,14 @@
 #include "Button.h"
 #include "System/Debug.h"
 
-#include <Arduino.h>
-#include <pinout.h>
-
 namespace
 {
     constexpr bool RELEASED = false;
     constexpr bool PUSHED = true;
 }
 
-Button::Button(uint8_t pin){
-    m_pGpio = nullptr;
+Button::Button(uint8_t pin)
+{
     m_pGpio = new Gpio(pin,Gpio::Mode::IN);
 }
 

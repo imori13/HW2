@@ -1,6 +1,6 @@
 #include "LED.h"
-#include "Debug.h"
-#include "Timer.h"
+#include "System/Debug.h"
+#include "System/Timer.h"
 
 LED::LED(uint8_t pinMode){
   m_Light = (pinMode==Pinout::LED);

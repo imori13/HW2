@@ -1,6 +1,6 @@
 #include "Input.h"
-#include "Button.h"
 #include "Debug.h"
+#include "Device/Button.h"
 
 namespace
 {

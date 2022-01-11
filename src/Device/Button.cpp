@@ -1,5 +1,5 @@
 #include "Button.h"
-#include "Debug.h"
+#include "System/Debug.h"
 
 #include <Arduino.h>
 #include <pinout.h>

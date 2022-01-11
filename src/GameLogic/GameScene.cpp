@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "GameSound.h"
 #include "Device/LED.h"
 #include "System/Input.h"
 #include "System/Debug.h"
@@ -28,6 +29,11 @@ namespace GameScene
                 Debug::Log("Button Pushed : ");
                 Debug::LogLine(i);
             }
+        }
+
+        if(Input::ButtonUp(0))
+        {
+            GameSound::OnPlay();
         }
     }
 }

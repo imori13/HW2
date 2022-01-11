@@ -27,7 +27,7 @@ namespace GameScene
         moduleLED.BlinkUpdate(0.1f);
 
         for(auto i=0u;i<BUTTON_COUNT;++i){
-            if(Input::GetUp(i))
+            if(Input::ButtonUp(i))
             {
                 Debug::Log("Button Pushed : ");
                 Debug::LogLine(i);

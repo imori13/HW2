@@ -8,7 +8,7 @@ namespace Input
     void AddButton(uint8_t pin);
     void Update();
 
-    bool GetDown(uint8_t index);
-    bool GetHold(uint8_t index);
-    bool GetUp(uint8_t index);
+    bool ButtonDown(uint8_t index);
+    bool ButtonHold(uint8_t index);
+    bool ButtonUp(uint8_t index);
 }

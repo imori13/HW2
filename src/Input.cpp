@@ -35,21 +35,21 @@ namespace Input
         }
     }
 
-    bool GetDown(uint8_t index)
+    bool ButtonDown(uint8_t index)
     {
         CheckIndex(index);
 
         return s_ButtonArray[index]->ButtonDown();
     }
 
-    bool GetHold(uint8_t index)
+    bool ButtonHold(uint8_t index)
     {
         CheckIndex(index);
 
         return s_ButtonArray[index]->ButtonHold();
     }
 
-    bool GetUp(uint8_t index)
+    bool ButtonUp(uint8_t index)
     {
         CheckIndex(index);
 

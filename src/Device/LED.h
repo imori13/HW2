@@ -1,15 +1,11 @@
 #pragma once
-#include <gpio.h>
-#include <stdint.h>
+#include "Device.h"
 
-class LED{
+class LED : public Device{
 public:
   LED(uint8_t pinMode);
-  virtual ~LED();
   void Update();
   void BlinkUpdate(float updateTime);
-protected:
-  Gpio* m_pGpio;
 private:
   bool m_Light;
   float m_LEDTimer;

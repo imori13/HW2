@@ -23,6 +23,7 @@ namespace Input
     {
         CheckIndex(s_CurrentHead);
 
+        // add button
         s_ButtonArray[s_CurrentHead] = new Button(pin);
         ++s_CurrentHead;
     }

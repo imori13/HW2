@@ -9,10 +9,6 @@ LED::LED(uint8_t pinMode){
   m_pGpio = new Gpio(pinMode,Gpio::Mode::OUT);
 }
 
-LED::~LED(){
-  delete m_pGpio;
-}
-
 void LED::Update()
 {
 

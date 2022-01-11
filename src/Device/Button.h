@@ -1,22 +1,17 @@
 #pragma once
-#include <gpio.h>
-#include <stdint.h>
+#include "Device.h"
 
-class Button
+class Button : public Device
 {
 public:
     Button(uint8_t pin);
-    ~Button();
     void Update();
 
     bool ButtonDown();
     bool ButtonHold();
     bool ButtonUp();
 private:
-    void InitializeState();
-
-    bool m_PrevState; 
-    Gpio* m_pGpio;
+    bool m_PrevState;
 
     bool m_ButtonDown;
     bool m_ButtonHold;

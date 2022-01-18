@@ -29,11 +29,21 @@ namespace GameScene
                 Debug::Log("Button Pushed : ");
                 Debug::LogLine(i);
             }
-        }
 
-        if(Input::ButtonUp(0))
-        {
-            GameSound::OnPlay();
+            if(Input::ButtonUp(0))
+            {
+                GameSound::OnPlay(SoundEnum::Test);
+            }
+
+            if(Input::ButtonUp(1))
+            {
+                GameSound::OnPlay(SoundEnum::GameClear);
+            }
+
+            if(Input::ButtonUp(2))
+            {
+                GameSound::OnPlay(SoundEnum::GameOver);
+            }
         }
     }
 }

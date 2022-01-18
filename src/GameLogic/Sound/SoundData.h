@@ -7,7 +7,7 @@ constexpr uint8_t SOUND_ARRAY_MAX = 255u;
 struct SoundData
 {
 public:
-    SoundData();
+    // SoundData();
 
 // setter
 public:

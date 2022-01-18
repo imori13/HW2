@@ -28,11 +28,11 @@ namespace
     }
 }
 
-SoundData::SoundData()
-    : m_data_empty_index(0)
-    , loop_count(default_loop_count)
-    , interval(default_interval)
-{} 
+// SoundData::SoundData()
+//     : m_data_empty_index(0)
+//     , loop_count(default_loop_count)
+//     , interval(default_interval)
+// {} 
 
 void SoundData::set_next_tone(uint8_t tone)
 {

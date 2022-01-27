@@ -2,6 +2,7 @@
 
 namespace
 {
+    SoundData s_Startup;
     SoundData s_Test;
     SoundData s_GameClear;
     SoundData s_GameOver;
@@ -11,6 +12,13 @@ namespace SoundList
 {
     void Initialize()
     {
+        // startup 
+        {
+            s_Startup.loop_count = 1;
+            s_Startup.interval = 0.25f;
+            s_Startup.set_next_tone(100);
+        }
+
         // test
         {
             s_Test.loop_count = 1;

@@ -12,6 +12,8 @@ namespace
 
 namespace GameScene
 {
+    GameState g_GameState = GameState::StandBy;
+
     void Initialize()
     {
         

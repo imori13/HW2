@@ -3,8 +3,8 @@
 
 #include "System/Timer.h"
 #include "System/Input.h"
-#include "GameLogic/GameScene.h"
-#include "GameLogic/GameSound.h"
+#include "Game/Scene/GameScene.h"
+#include "Game/GameSound.h"
 
 namespace
 {

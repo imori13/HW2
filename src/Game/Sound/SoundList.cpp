@@ -22,10 +22,10 @@ namespace SoundList
         // test
         {
             s_Test.loop_count = 1;
-            s_Test.interval = 0.01f;
-            for(auto i=10;i<100;++i)
+            s_Test.interval = 0.05f;
+            for(auto i=10;i<25;++i)
                 s_Test.set_next_tone(i);
-            for(auto i=100;i>10;--i)
+            for(auto i=25;i>10;--i)
                 s_Test.set_next_tone(i);
         }
 

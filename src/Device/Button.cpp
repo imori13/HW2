@@ -10,6 +10,7 @@ namespace
 Button::Button(uint8_t pin)
 {
     m_pGpio = new Gpio(pin,Gpio::Mode::IN);
+    m_PrevState = false;
 }
 
 void Button::Update()

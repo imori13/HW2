@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-constexpr uint8_t SOUND_ARRAY_MAX = 255u;
+constexpr uint8_t SOUND_ARRAY_MAX = 64u;
 
 struct SoundData
 {

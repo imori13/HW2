@@ -1,10 +1,13 @@
 #include <Arduino.h>
 #include <pinout.h>
 
+#include "System/Debug.h"
 #include "System/Timer.h"
 #include "System/Input.h"
 #include "Game/Scene/GameScene.h"
+#include "Game/Scene/StartupScene.h"
 #include "Game/GameSound.h"
+#include "Game/Scene/SceneManager.h"
 
 namespace
 {
@@ -24,7 +27,8 @@ void setup() {
     GameSound::Initialize(Pinout::A2);
 
     // initialize game
-    GameScene::Initialize();
+    SceneManager::Initialize();
+    SceneManager::ChangeScene(SceneEnum::GamePlay);
 }
 
 void loop() {
@@ -34,5 +38,5 @@ void loop() {
     GameSound::Update();
 
     // update scene
-    GameScene::Update();
+    SceneManager::Update();
 }

@@ -79,8 +79,8 @@ namespace GameLogic
             // ■ レベル内の音程を生成
             for(auto iSize = 0; iSize < size; ++iSize)
             {
-                // s_LevelSound[iLevel].at(iSize) = (SoundInterval)(random() % 3);
-                s_LevelSound[iLevel].at(iSize) = SoundInterval::Low;
+                s_LevelSound[iLevel].at(iSize) = (SoundInterval)(random() % 3);
+                // s_LevelSound[iLevel].at(iSize) = SoundInterval::Low;
             }
         }
         s_LevelSound[(uint8_t)GameLevel::Level1].Create(3);

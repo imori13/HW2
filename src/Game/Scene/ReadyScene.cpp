@@ -1,7 +1,7 @@
 #include "ReadyScene.h"
 
 #include "SceneManager.h"
-#include "StaticModules.h"
+#include "Game/StaticModules.h"
 
 namespace
 {
@@ -14,17 +14,18 @@ void ReadyScene::Initialize()
     s_Timer = 0;
     s_NextScene = false;
 
-    GameSound::OnPlay(SoundEnum::GameClear);
+    GameSound::OnPlay(SoundEnum::OK);
 }
 
 void ReadyScene::Update()
 {
-    StaticModules::g_ColorLED.OnLightBlink(Color::Red(),0.75f);
+    StaticModules::g_ColorLED.OnLightBlink(Color::Blue(), 1.0f, 0.1f);
 
     for(auto i = 0u; i < Input::size(); ++i)
     {
         if(Input::ButtonUp(i))
         {
+            GameSound::OnPlay(SoundEnum::OK);
             s_NextScene = true;
         }
     }

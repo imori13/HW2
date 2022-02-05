@@ -1,7 +1,7 @@
 #include "StartupScene.h"
 
 #include "SceneManager.h"
-#include "StaticModules.h"
+#include "Game/StaticModules.h"
 
 namespace 
 {
@@ -11,23 +11,22 @@ namespace
 
 void StartupScene::Initialize()
 {
-    s_Timer = 0;
-    
-    GameSound::OnPlay(SoundEnum::Test);
-
     Debug::LogLine("StartupScene : start");
+
+    s_Timer = 0;
+    GameSound::OnPlay(SoundEnum::Succsess);
 }
 
 void StartupScene::Update()
 {
-    StaticModules::g_ColorLED.OnLightBlink(Color::Red(),0.1f);
+    StaticModules::g_ColorLED.OnLightBlink(Color::White(),0.1f);
 
     s_Timer += Timer::g_FrameTime;
     if(s_Timer >= LIMIT)
     {
-        SceneManager::ChangeScene(SceneEnum::Ready);
-
         Debug::LogLine("StartupScene : finished");
+
+        SceneManager::ChangeScene(SceneEnum::Ready);
     }
 }
 

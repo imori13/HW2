@@ -1,43 +1,36 @@
 #include "GameScene.h"
 #include "../GameSound.h"
-#include "StaticModules.h"
+#include "Game/StaticModules.h"
+#include "Game/Logic/GameManager.h"
+#include "SceneManager.h"
 
 void GameScene::Initialize()
 {
-    
+    GameManager::Initialize();
 }
 
 void GameScene::Update()
 {
-    StaticModules::g_ColorLED.OnLight(Color::Green());
-    
-    for(auto i=0u; i<Input::size(); ++i)
-    {
-        if(Input::ButtonUp(i))
-        {
-            Debug::Log("Button Pushed : ");
-            Debug::LogLine(i);
-        }
-    }
+    // if(Input::ButtonUp(0))
+    // {
+    //     GameSound::OnPlay(SoundEnum::Low);
+    // }
 
-    if(Input::ButtonHold(0) || Input::ButtonHold(1) || Input::ButtonHold(2))
-    {
-        StaticModules::g_ColorLED.OnLightBlink(Color::Red(), 0.1f);
-    }
+    // if(Input::ButtonUp(1))
+    // {
+    //     GameSound::OnPlay(SoundEnum::Middle);
+    // }
 
-    if(Input::ButtonUp(0))
-    {
-        GameSound::OnPlay(SoundEnum::Test);
-    }
+    // if(Input::ButtonUp(2))
+    // {
+    //     GameSound::OnPlay(SoundEnum::High);
+    // }
 
-    if(Input::ButtonUp(1))
-    {
-        GameSound::OnPlay(SoundEnum::GameClear);
-    }
+    GameManager::Update();
 
-    if(Input::ButtonUp(2))
+    if(GameManager::IsSceneEnd)
     {
-        GameSound::OnPlay(SoundEnum::GameOver);
+        SceneManager::ChangeScene(SceneEnum::Ready);
     }
 }
 

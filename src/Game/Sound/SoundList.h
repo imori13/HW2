@@ -14,4 +14,12 @@ enum class SoundEnum : uint8_t
     Test,
     GameClear,
     GameOver,
+
+    Low,
+    Middle,
+    High,
+
+    OK,
+    Succsess,
+    Misstake,
 };

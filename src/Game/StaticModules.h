@@ -5,7 +5,7 @@
 #include "System/Timer.h"
 #include "System/Input.h"
 #include "System/Debug.h"
-#include "../GameSound.h"
+#include "GameSound.h"
 
 namespace StaticModules
 {

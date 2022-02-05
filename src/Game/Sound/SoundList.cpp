@@ -73,18 +73,21 @@ namespace SoundList
         // Succsess
         {
             s_Succsess.Create(64,1,0.05f);
-            for(auto i=0;i<5;++i)
+            for(auto i=0;i<3;++i)
             {
                 for(auto j=0;j<5;++j)
                 {
                     s_Succsess.SetNext(100+(i*10)+(j*10));
                 }
             }
-            for(auto i=0;i<5;++i)
-            {
-                s_Succsess.SetNext(50+i*10);
-                s_Succsess.SetNext(100+i*10);
-            }
+            s_Succsess.SetNext(100);
+            s_Succsess.SetNext(240);
+            s_Succsess.SetNext(100);
+            s_Succsess.SetNext(240);
+            s_Succsess.SetNext(100);
+            s_Succsess.SetNext(240);
+            s_Succsess.SetNext(100);
+            s_Succsess.SetNext(240);
             s_Succsess.SetNext(100);
             s_Succsess.SetNext(240);
             s_Succsess.SetNext(100);

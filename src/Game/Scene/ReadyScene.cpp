@@ -6,7 +6,7 @@
 namespace
 {
     float s_LightOffTimer = 0;
-    constexpr float s_LightOffLimit = 120.0f;
+    constexpr float s_LightOffLimit = 60.0f;
 
     float s_Timer;
     bool s_NextScene;

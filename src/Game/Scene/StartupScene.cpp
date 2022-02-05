@@ -6,7 +6,7 @@
 namespace 
 {
     float s_Timer;
-    constexpr float LIMIT = 2.0f;
+    constexpr float LIMIT = 5.0f;
 }
 
 void StartupScene::Initialize()

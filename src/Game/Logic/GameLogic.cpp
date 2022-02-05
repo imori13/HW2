@@ -10,6 +10,8 @@ namespace
     // 再生用
     uint8_t s_SoundPlayIndex;
     float s_Timer;
+    float s_InputLimitTimer;
+    constexpr float INPUT_LIMIT = 30.0f;
 
     // 入力用
     uint8_t s_InputIndex;
@@ -63,6 +65,7 @@ namespace GameLogic
 {   
     void Initialize()
     {
+        s_InputLimitTimer = 0;
         s_SoundPlayIndex = 0;
         s_InputIndex = 0;
 
@@ -123,6 +126,15 @@ namespace GameLogic
     // 入力フェーズ
     void InputPhase()
     {
+        if(s_InputLimitTimer < INPUT_LIMIT)
+        {
+            s_InputLimitTimer += Timer::g_FrameTime;
+        }
+        else
+        {
+            GameManager::ChangePhase(PhaseState::Misstake);
+        }
+
         if(IsAnyBottonUp())
         {
             // 現在のレベルのサウンド配列を取り出す

@@ -8,6 +8,7 @@ namespace
     SoundData s_High;
 
     SoundData s_OK;
+    SoundData s_NO;
     SoundData s_Succsess;
     SoundData s_Misstake;
 
@@ -56,11 +57,22 @@ namespace SoundList
             s_OK.SetNext(200);
         }
 
+        // NO
+        {
+            s_NO.Create(6,1,0.05f);
+            s_NO.SetNext(200);
+            s_NO.SetNext(0);
+            s_NO.SetNext(150);
+            s_NO.SetNext(100);
+            s_NO.SetNext(0);
+            s_NO.SetNext(50);
+        }
+
         Debug::LogLine("create succsess sound.");
 
         // Succsess
         {
-            s_Succsess.Create(55,1,0.05f);
+            s_Succsess.Create(64,1,0.05f);
             for(auto i=0;i<5;++i)
             {
                 for(auto j=0;j<5;++j)
@@ -68,11 +80,17 @@ namespace SoundList
                     s_Succsess.SetNext(100+(i*10)+(j*10));
                 }
             }
-            for(auto i=0;i<10;++i)
+            for(auto i=0;i<5;++i)
             {
                 s_Succsess.SetNext(50+i*10);
                 s_Succsess.SetNext(100+i*10);
             }
+            s_Succsess.SetNext(100);
+            s_Succsess.SetNext(240);
+            s_Succsess.SetNext(100);
+            s_Succsess.SetNext(240);
+            s_Succsess.SetNext(100);
+            s_Succsess.SetNext(240);
         }
 
         Debug::LogLine("create misstake sound.");
@@ -174,6 +192,8 @@ namespace SoundList
             case SoundEnum::High: return s_High;
 
             case SoundEnum::OK: return s_OK;
+            case SoundEnum::NO: return s_NO;
+
             case SoundEnum::Succsess: return s_Succsess;
             case SoundEnum::Misstake: return s_Misstake;
 

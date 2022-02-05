@@ -10,6 +10,12 @@ ColorLED::ColorLED(uint8_t pinMode)
   colorLED = new ChainableLED(pinMode, Pinout::A1, 1);
 }
 
+
+void ColorLED::OffLight()
+{
+    colorLED->setColorRGB(0, 0, 0, 0);
+}
+
 void ColorLED::OnLight(Color color)
 {
     colorLED->setColorRGB(0, color.r, color.g, color.b);

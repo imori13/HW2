@@ -10,6 +10,10 @@ void SoundData::Create(uint8_t count,uint8_t loopCount,float interval)
     this->m_Interval = interval;
 
     m_Data = new uint8_t[count];
+    for(uint8_t i = 0; i< count; ++i)
+    {
+        m_Data[i] = 0;
+    }
 }
 
 void SoundData::SetNext(uint8_t tone)

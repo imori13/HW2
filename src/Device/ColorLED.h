@@ -7,6 +7,7 @@ class ColorLED
 {
 public:
   ColorLED(uint8_t pinMode);
+  void OffLight();
   void OnLight(Color color);
   void OnLightBlink(Color color,float interval);
   void OnLightBlink(Color color,float waitTime, float lightTime);

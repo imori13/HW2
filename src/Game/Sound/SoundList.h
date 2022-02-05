@@ -16,6 +16,8 @@ enum class SoundEnum : uint8_t
     High,
 
     OK,
+    NO,
+    
     Succsess,
     Misstake,
 

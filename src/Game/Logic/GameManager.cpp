@@ -28,9 +28,9 @@ namespace
 
     void WaitUpdate()
     {
-        StaticModules::g_ColorLED.OnLightBlink(Color::Green(),0.1f,1.0f);
+        StaticModules::g_ColorLED.OnLightBlink(Color::Red(),0.1f,1.0f);
 
-        constexpr float WAIT_LIMIT = 3.0f;
+        constexpr float WAIT_LIMIT = 1.0f;
 
         s_Timer += Timer::g_FrameTime;
         if(s_Timer > WAIT_LIMIT)
@@ -70,7 +70,7 @@ namespace
         }
         else
         {
-            StaticModules::g_ColorLED.OnLight(Color::Green());
+            StaticModules::g_ColorLED.OnLightBlink(Color::Green(),0.1f,1.0f);
 
             // 次のレベルへ
             s_Timer += Timer::g_FrameTime;
@@ -113,7 +113,7 @@ namespace
         }
         else
         {
-            StaticModules::g_ColorLED.OnLight(Color::Red());
+            StaticModules::g_ColorLED.OnLightBlink(Color::Red(),0.1f,1.0f);
             
             // 最初に戻る
             s_Timer += Timer::g_FrameTime;

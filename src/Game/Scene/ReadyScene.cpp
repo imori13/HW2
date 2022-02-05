@@ -5,6 +5,9 @@
 
 namespace
 {
+    float s_LightOffTimer = 0;
+    constexpr float s_LightOffLimit = 120.0f;
+
     float s_Timer;
     bool s_NextScene;
 }
@@ -12,14 +15,23 @@ namespace
 void ReadyScene::Initialize()
 {
     s_Timer = 0;
+    s_LightOffTimer = 0;
     s_NextScene = false;
 
-    GameSound::OnPlay(SoundEnum::OK);
+    GameSound::OnPlay(SoundEnum::NO);
 }
 
 void ReadyScene::Update()
 {
-    StaticModules::g_ColorLED.OnLightBlink(Color::Yellow(), 1.0f, 0.1f);
+    if(s_LightOffTimer<s_LightOffLimit)
+    {
+        s_LightOffTimer += Timer::g_FrameTime;
+        StaticModules::g_ColorLED.OnLightBlink(Color::Yellow(), 1.0f, 0.1f);
+    }
+    else
+    {
+        StaticModules::g_ColorLED.OffLight();
+    }
 
     for(auto i = 0u; i < Input::size(); ++i)
     {

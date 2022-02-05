@@ -1,10 +1,10 @@
 #pragma once
 #include "IScene.h"
 
-class StartupScene : public IScene
+class ClearScene : public IScene
 {
 public:
-    ~StartupScene() override
+    ~ClearScene() override
     {
         Terminate();
     }

@@ -11,30 +11,20 @@ void GameScene::Initialize()
 
 void GameScene::Update()
 {
-    // if(Input::ButtonUp(0))
-    // {
-    //     GameSound::OnPlay(SoundEnum::Low);
-    // }
-
-    // if(Input::ButtonUp(1))
-    // {
-    //     GameSound::OnPlay(SoundEnum::Middle);
-    // }
-
-    // if(Input::ButtonUp(2))
-    // {
-    //     GameSound::OnPlay(SoundEnum::High);
-    // }
-
     GameManager::Update();
 
     if(GameManager::IsSceneEnd)
     {
         SceneManager::ChangeScene(SceneEnum::Ready);
     }
+
+    if(GameManager::IsClear)
+    {
+        SceneManager::ChangeScene(SceneEnum::Clear);
+    }
 }
 
 void GameScene::Terminate()
 {
-
+    GameManager::Terminate();
 }

@@ -11,10 +11,6 @@ namespace SoundList
 
 enum class SoundEnum : uint8_t
 {
-    Test,
-    GameClear,
-    GameOver,
-
     Low,
     Middle,
     High,
@@ -22,4 +18,6 @@ enum class SoundEnum : uint8_t
     OK,
     Succsess,
     Misstake,
+
+    GameClear,
 };

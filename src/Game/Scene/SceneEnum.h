@@ -6,6 +6,7 @@ enum class SceneEnum : uint8_t
     StartUp,
     Ready,
     GamePlay,
+    Clear,
 
     Max,
 };

@@ -19,7 +19,7 @@ void ReadyScene::Initialize()
 
 void ReadyScene::Update()
 {
-    StaticModules::g_ColorLED.OnLightBlink(Color::Blue(), 1.0f, 0.1f);
+    StaticModules::g_ColorLED.OnLightBlink(Color::Yellow(), 1.0f, 0.1f);
 
     for(auto i = 0u; i < Input::size(); ++i)
     {

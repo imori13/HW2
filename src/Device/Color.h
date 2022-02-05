@@ -7,6 +7,7 @@ public:
     uint8_t r,g,b;
 
 public:
+    constexpr Color(): r(0), g(0), b(0){}
     constexpr Color(float r, float g,float b)
         : r(r), g(g), b(b)
     {

@@ -16,6 +16,11 @@ namespace
 
 namespace
 { 
+    bool IsLastLevel()
+    {
+        return (GameLevel)((uint8_t)s_CurrentGameLevel+1) == GameLevel::Max;
+    }
+
     void GameLevelUp()
     {
         s_CurrentGameLevel = (GameLevel)((uint8_t)s_CurrentGameLevel+1);
@@ -71,11 +76,21 @@ namespace
             s_Timer += Timer::g_FrameTime;
             if(s_Timer > SUCCSESS_SECOUND_WAIT_LIMIT)
             {
-                GameLevelUp();
+                if(IsLastLevel())
+                {
+                    s_Timer = 0;
+                    s_SuccsessStart = false;
+                    GameManager::ChangePhase(PhaseState::StartWait);
+                    GameManager::IsClear = true;
+                }
+                else
+                {
+                    GameLevelUp();
 
-                s_Timer = 0;
-                s_SuccsessStart = false;
-                GameManager::ChangePhase(PhaseState::SoundPhase);
+                    s_Timer = 0;
+                    s_SuccsessStart = false;
+                    GameManager::ChangePhase(PhaseState::SoundPhase);
+                }
             }
         }
     }
@@ -116,10 +131,12 @@ namespace
 namespace GameManager
 {
     bool IsSceneEnd; // extern GameManager.h
+    bool IsClear;
 
     void Initialize()
     {
         IsSceneEnd = false;
+        IsClear=false;
         s_Timer = 0;
         s_SuccsessStart = false;
         s_MisstakeStart = false;
@@ -159,6 +176,11 @@ namespace GameManager
             
             default: break;
         }
+    }
+
+    void Terminate()
+    {
+        GameLogic::Terminate();
     }
 
     void ChangePhase(PhaseState nextState)

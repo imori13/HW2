@@ -3,13 +3,10 @@
 #include "StartupScene.h"
 #include "ReadyScene.h"
 #include "GameScene.h"
+#include "ClearScene.h"
 
 namespace
 {
-    IScene* s_StartupScene;
-    IScene* s_ReadyScene;
-    IScene* s_GameScene;
-
     IScene* s_CurrentScene;
 }
 
@@ -17,32 +14,34 @@ namespace SceneManager
 {
     void Initialize()
     {
-        s_StartupScene = new StartupScene();
-        s_ReadyScene = new ReadyScene();
-        s_GameScene = new GameScene();
-
         s_CurrentScene = nullptr;
     }
 
     void ChangeScene(SceneEnum sceneEnum)
     {
-        Debug::LogLine("change scene.");
+        Debug::Log("change scene : ");
+        Debug::LogLine((uint8_t) sceneEnum);
         
+        if(s_CurrentScene!=nullptr)
+        {
+            delete s_CurrentScene;
+
+            Debug::LogLine("scene terminated.");
+        }
+
         switch(sceneEnum)
         {
-            case SceneEnum::StartUp : 
-                s_CurrentScene = s_StartupScene; break;
-            case SceneEnum::Ready : 
-                s_CurrentScene = s_ReadyScene; break;
-            case SceneEnum::GamePlay : 
-                s_CurrentScene = s_GameScene; break;
+            case SceneEnum::StartUp :  s_CurrentScene = new StartupScene(); break;
+            case SceneEnum::Ready :  s_CurrentScene = new ReadyScene(); break;
+            case SceneEnum::GamePlay :  s_CurrentScene = new GameScene(); break;
+            case SceneEnum::Clear :  s_CurrentScene = new ClearScene(); break; 
 
-            default : 
-                Debug::LogLine("change scene error."); break;
+            default : Debug::LogLine("change scene error."); break;
         }
 
         // scene initialize
         s_CurrentScene->Initialize();
+        Debug::LogLine("scene initialize.");
     }
 
     void Update()

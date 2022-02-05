@@ -24,7 +24,7 @@ namespace
             case SoundInterval::Low: return SoundEnum::Low;
             case SoundInterval::Middle: return SoundEnum::Middle;
             case SoundInterval::High: return SoundEnum::High;
-            default : Debug::LogLine("convet error in GameLogic.cpp/ToSound()"); return SoundEnum::Test;
+            default : Debug::LogLine("convet error in GameLogic.cpp/ToSound()"); return SoundEnum::OK;
         }
     }
 
@@ -68,14 +68,15 @@ namespace GameLogic
 
         // ■ レベルごとの配列を生成
         s_LevelSound = new SoundArray[(uint8_t)GameLevel::Max];
-        for(auto iLevel = 0; iLevel<(uint8_t)GameLevel::Max; ++iLevel)
+        for(auto iLevel = 1; iLevel<(uint8_t)GameLevel::Max; ++iLevel)
         {
-            const auto& size = iLevel+5;
+            const auto& size = iLevel+3;
             s_LevelSound[iLevel].Create(size);
             
             // ■ レベル内の音程を生成
-            for(auto iSize = 0; iSize < size; ++ iSize)
+            for(auto iSize = 0; iSize < size; ++iSize)
             {
+                // s_LevelSound[iLevel].at(iSize) = (SoundInterval)(random() % 3);
                 s_LevelSound[iLevel].at(iSize) = SoundInterval::Low;
             }
         }
@@ -83,6 +84,13 @@ namespace GameLogic
         s_LevelSound[(uint8_t)GameLevel::Level1].at(0) = SoundInterval::Low;
         s_LevelSound[(uint8_t)GameLevel::Level1].at(1) = SoundInterval::Middle;
         s_LevelSound[(uint8_t)GameLevel::Level1].at(2) = SoundInterval::High;
+    }
+
+    void Terminate()
+    {
+        Debug::LogLine("gamelogic terminated.");
+
+        delete[] s_LevelSound;
     }
 
     // 再生フェーズ

@@ -4,6 +4,7 @@
 namespace GameLogic
 {
     void Initialize();
+    void Terminate();
 
     // 再生フェーズ
     void SoundPhase();

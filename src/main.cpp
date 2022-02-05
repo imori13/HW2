@@ -28,7 +28,7 @@ void setup() {
 
     // initialize game
     SceneManager::Initialize();
-    SceneManager::ChangeScene(SceneEnum::StartUp);
+    SceneManager::ChangeScene(SceneEnum::Clear);
 }
 
 void loop() {

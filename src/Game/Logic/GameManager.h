@@ -5,9 +5,6 @@ enum class GameLevel
 {
     Level1,
     Level2,
-    Level3,
-    Level4,
-    Level5,
 
     Max,
 };
@@ -24,9 +21,11 @@ enum class PhaseState
 namespace GameManager
 {
     extern bool IsSceneEnd;
+    extern bool IsClear;
 
     void Initialize();
     void Update();
+    void Terminate();
     void ChangePhase(PhaseState nextState);
 
     GameLevel GetCurrentGameLevel();

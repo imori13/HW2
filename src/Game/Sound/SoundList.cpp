@@ -1,4 +1,5 @@
 #include "SoundList.h"
+#include "System/Debug.h"
 
 namespace
 {
@@ -17,6 +18,8 @@ namespace SoundList
 {
     void Initialize()
     {
+        Debug::LogLine("create gamesound.");
+
         // gamesounds.
         {
             constexpr uint8_t loopCount = 1;
@@ -25,137 +28,138 @@ namespace SoundList
             constexpr int arraysize = 7;
             constexpr uint8_t array[arraysize] = {80,110,85,105,90,100,95};
 
-            s_Low.loop_count = loopCount;
-            s_Middle.loop_count = loopCount;
-            s_High.loop_count = loopCount;
-            s_Low.interval = gamesound_interval;
-            s_Middle.interval = gamesound_interval;
-            s_High.interval = gamesound_interval;
+            s_Low.Create(arraysize*2,loopCount,gamesound_interval);
+            s_Middle.Create(arraysize*2,loopCount,gamesound_interval);
+            s_High.Create(arraysize*2,loopCount,gamesound_interval);
 
             for(auto i= 0;i<arraysize;++i)
             {
-                s_Low.set_next_tone(array[i]+20);
-                s_Low.set_next_tone(array[i]-20);
-                s_Middle.set_next_tone(array[i]+40);
-                s_Middle.set_next_tone(array[i]+50);
-                s_High.set_next_tone(array[i]+100);
-                s_High.set_next_tone(array[i]+120);
+                s_Low.SetNext(array[i]+20);
+                s_Low.SetNext(array[i]-20);
+                s_Middle.SetNext(array[i]+40);
+                s_Middle.SetNext(array[i]+50);
+                s_High.SetNext(array[i]+100);
+                s_High.SetNext(array[i]+120);
             }
         }
 
+        Debug::LogLine("create ok sound.");
+
         // OK
         {
-            s_OK.loop_count = 1;
-            s_OK.interval = 0.05f;
-            s_OK.set_next_tone(50);
-            s_OK.set_next_tone(0);
-            s_OK.set_next_tone(100);
-            s_OK.set_next_tone(150);
-            s_OK.set_next_tone(0);
-            s_OK.set_next_tone(200);
+            s_OK.Create(6,1,0.05f);
+            s_OK.SetNext(50);
+            s_OK.SetNext(0);
+            s_OK.SetNext(100);
+            s_OK.SetNext(150);
+            s_OK.SetNext(0);
+            s_OK.SetNext(200);
         }
+
+        Debug::LogLine("create succsess sound.");
 
         // Succsess
         {
-            s_Succsess.loop_count = 1;
-            s_Succsess.interval = 0.05f;
-
+            s_Succsess.Create(55,1,0.05f);
             for(auto i=0;i<5;++i)
             {
                 for(auto j=0;j<5;++j)
                 {
-                    s_Succsess.set_next_tone(100+(i*10)+(j*10));
+                    s_Succsess.SetNext(100+(i*10)+(j*10));
                 }
             }
             for(auto i=0;i<10;++i)
             {
-                s_Succsess.set_next_tone(50+i*10);
-                s_Succsess.set_next_tone(100+i*10);
+                s_Succsess.SetNext(50+i*10);
+                s_Succsess.SetNext(100+i*10);
             }
         }
 
+        Debug::LogLine("create misstake sound.");
+
         // Misstake
         {
-            s_Misstake.loop_count = 1;
-            s_Misstake.interval = 0.025f;
-            s_Misstake.set_next_tone(200);
-            s_Misstake.set_next_tone(0);
-            s_Misstake.set_next_tone(100);
-            s_Misstake.set_next_tone(200);
-            s_Misstake.set_next_tone(0);
-            s_Misstake.set_next_tone(100);
-            s_Misstake.set_next_tone(200);
-            s_Misstake.set_next_tone(0);
-            s_Misstake.set_next_tone(100);
-            s_Misstake.set_next_tone(200);
-            s_Misstake.set_next_tone(0);
-            s_Misstake.set_next_tone(100);
+            s_Misstake.Create(58,1,0.025f);
+            s_Misstake.SetNext(200);
+            s_Misstake.SetNext(0);
+            s_Misstake.SetNext(100);
+            s_Misstake.SetNext(200);
+            s_Misstake.SetNext(0);
+            s_Misstake.SetNext(100);
+            s_Misstake.SetNext(200);
+            s_Misstake.SetNext(0);
+            s_Misstake.SetNext(100);
+            s_Misstake.SetNext(200);
+            s_Misstake.SetNext(0);
+            s_Misstake.SetNext(100);
             for(auto i=2;i>=0;--i)
             {
                 for(auto j=3;j>=0;--j)
                 {
-                    s_Misstake.set_next_tone(50+(i*5)+(j*5));
-                    s_Misstake.set_next_tone(100+(i*5)+(j*5));
+                    s_Misstake.SetNext(50+(i*5)+(j*5));
+                    s_Misstake.SetNext(100+(i*5)+(j*5));
                 }
             }
             for(auto i=10;i>=0;--i)
             {
-                s_Misstake.set_next_tone(0+i*5);
-                s_Misstake.set_next_tone(50+i*5);
+                s_Misstake.SetNext(0+i*5);
+                s_Misstake.SetNext(50+i*5);
             }
         }
+
+        Debug::LogLine("create clear sound.");
+
         // clear
         {
             constexpr int arraysize = 32;
             constexpr uint8_t array[arraysize] = {100,0,100,0,100,0,100,100,100,0,80,80,80,80,90,90,90,90,100,100,0,0,90,0,100,100,100,100,100,100,100,100};
 
-            s_GameClear.loop_count = 1;
-            s_GameClear.interval = 0.05f;
+            s_GameClear.Create(128,1,0.05f);
             for(auto i= 0;i<arraysize;++i)
             {
-                s_GameClear.set_next_tone(array[i]);
-                s_GameClear.set_next_tone(array[i]+20);
+                s_GameClear.SetNext(array[i]);
+                s_GameClear.SetNext(array[i]+20);
             }
-            // s_GameClear.set_next_tone(0);
-            // s_GameClear.set_next_tone(0);
-            // for(auto i=0;i<15;++i)
-            // {
-            //     s_GameClear.set_next_tone(50+i*10);
-            //     s_GameClear.set_next_tone(100+i*10);
-            // }
+            s_GameClear.SetNext(0);
+            s_GameClear.SetNext(0);
+            for(auto i=0;i<15;++i)
+            {
+                s_GameClear.SetNext(50+i*10);
+                s_GameClear.SetNext(100+i*10);
+            }
 
-            // s_GameClear.set_next_tone(240);
-            // s_GameClear.set_next_tone(100);
-            // s_GameClear.set_next_tone(240);
-            // s_GameClear.set_next_tone(100);
-            // s_GameClear.set_next_tone(0);
-            // s_GameClear.set_next_tone(0);
-            // s_GameClear.set_next_tone(0);
-            // s_GameClear.set_next_tone(0);
-            // s_GameClear.set_next_tone(240);
-            // s_GameClear.set_next_tone(100);
-            // s_GameClear.set_next_tone(240);
-            // s_GameClear.set_next_tone(100);
-            // s_GameClear.set_next_tone(0);
-            // s_GameClear.set_next_tone(240);
-            // s_GameClear.set_next_tone(100);
-            // s_GameClear.set_next_tone(240);
-            // s_GameClear.set_next_tone(100);
-            // s_GameClear.set_next_tone(240);
-            // s_GameClear.set_next_tone(100);
-            // s_GameClear.set_next_tone(240);
-            // s_GameClear.set_next_tone(100);
-            // s_GameClear.set_next_tone(240);
-            // s_GameClear.set_next_tone(100);
-            // s_GameClear.set_next_tone(240);
-            // s_GameClear.set_next_tone(100);
-            // s_GameClear.set_next_tone(240);
-            // s_GameClear.set_next_tone(100);
-            // s_GameClear.set_next_tone(240);
-            // s_GameClear.set_next_tone(100);
-            // s_GameClear.set_next_tone(240);
-            // s_GameClear.set_next_tone(100);
-            // s_GameClear.set_next_tone(240);
+            s_GameClear.SetNext(240);
+            s_GameClear.SetNext(100);
+            s_GameClear.SetNext(240);
+            s_GameClear.SetNext(100);
+            s_GameClear.SetNext(0);
+            s_GameClear.SetNext(0);
+            s_GameClear.SetNext(0);
+            s_GameClear.SetNext(0);
+            s_GameClear.SetNext(240);
+            s_GameClear.SetNext(100);
+            s_GameClear.SetNext(240);
+            s_GameClear.SetNext(100);
+            s_GameClear.SetNext(0);
+            s_GameClear.SetNext(240);
+            s_GameClear.SetNext(100);
+            s_GameClear.SetNext(240);
+            s_GameClear.SetNext(100);
+            s_GameClear.SetNext(240);
+            s_GameClear.SetNext(100);
+            s_GameClear.SetNext(240);
+            s_GameClear.SetNext(100);
+            s_GameClear.SetNext(240);
+            s_GameClear.SetNext(100);
+            s_GameClear.SetNext(240);
+            s_GameClear.SetNext(100);
+            s_GameClear.SetNext(240);
+            s_GameClear.SetNext(100);
+            s_GameClear.SetNext(240);
+            s_GameClear.SetNext(100);
+            s_GameClear.SetNext(240);
+            s_GameClear.SetNext(100);
+            s_GameClear.SetNext(240);
         }
     }
 

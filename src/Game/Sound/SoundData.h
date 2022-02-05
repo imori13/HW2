@@ -1,30 +1,27 @@
 #pragma once
-
 #include <stdint.h>
 
-constexpr uint8_t SOUND_ARRAY_MAX = 64u;
-
-struct SoundData
+class SoundData
 {
 public:
-    // SoundData();
-
-// setter
-public:
-    void set_next_tone(uint8_t tone);
+    void Create(uint8_t count,uint8_t loopCount,float interval);
+    void SetNext(uint8_t tone);
 
 // getter
 public:
     const uint8_t& at(uint8_t index) const;
     const uint8_t& size() const;
 
-// public value    
-public:
-    uint8_t loop_count;
-    float interval;
+    const uint8_t& GetLoopCount() const { return m_LoopCount; }
+    const float& GetInterval() const { return m_Interval; } 
 
 // private value
 private:
-    uint8_t m_data_array[SOUND_ARRAY_MAX];
-    uint8_t m_data_empty_index;  // is data next empty index header.
+    uint8_t* m_Data;
+    uint8_t m_DataCount;
+    uint8_t m_LoopCount;
+    float m_Interval;
+    
+private:
+    uint8_t m_EmptyHeader;
 };

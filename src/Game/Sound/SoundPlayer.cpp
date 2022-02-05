@@ -38,7 +38,7 @@ namespace
 
         s_Timer += Timer::g_FrameTime;
 
-        if( s_Timer < s_SoundData.interval ) return;
+        if( s_Timer < s_SoundData.GetInterval() ) return;
 
         // 再生
         if( s_iTone < s_SoundData.size())
@@ -57,7 +57,7 @@ namespace
         {
             s_pSpeaker->stopTone();
 
-            if( s_iLoop + 1 < s_SoundData.loop_count ) // continue to play sound
+            if( s_iLoop + 1 < s_SoundData.GetLoopCount() ) // continue to play sound
             {
                 s_iTone = 0;
                 ++s_iLoop;

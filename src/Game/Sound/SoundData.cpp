@@ -1,55 +1,43 @@
 #include "SoundData.h"
 #include "System/Debug.h"
 
-// default setting
-namespace
+void SoundData::Create(uint8_t count,uint8_t loopCount,float interval)
 {
-    constexpr uint8_t default_loop_count = 1;
-    constexpr float default_interval = 0.1f;
+    m_EmptyHeader = 0;
+
+    this->m_DataCount = count;
+    this->m_LoopCount = loopCount;
+    this->m_Interval = interval;
+
+    m_Data = new uint8_t[count];
 }
 
-// local method
-namespace
+void SoundData::SetNext(uint8_t tone)
 {
-    void ErrorLog_AndSkip()
+    m_Data[m_EmptyHeader] = tone;
+    
+    if(m_EmptyHeader < m_DataCount)
     {
-        Debug::LogLine("over limit to sound data."); 
+        ++m_EmptyHeader;
     }
-
-    void NextIndex(uint8_t* head)
+    else
     {
-        if(*head < SOUND_ARRAY_MAX)
-        {
-            ++(*head);
-            return;
-        }
-        
-        ErrorLog_AndSkip();
+        Debug::LogLine("outofrange error in SoundData.cpp/SetNext()");
     }
-}
-
-// SoundData::SoundData()
-//     : m_data_empty_index(0)
-//     , loop_count(default_loop_count)
-//     , interval(default_interval)
-// {} 
-
-void SoundData::set_next_tone(uint8_t tone)
-{
-    // set data.
-    m_data_array[m_data_empty_index] = tone;
-
-    // set next index.
-    NextIndex(&m_data_empty_index);
 }
 
 const uint8_t& SoundData::at(uint8_t index) const
 {
-    return m_data_array[index];
+    if(index < 0 || index >= m_DataCount)
+    {
+        Debug::LogLine("outofrange error in SoundData.cpp/at()");
+    }
+
+    return m_Data[index];
 }
 
 
 const uint8_t& SoundData::size() const
 {
-    return m_data_empty_index;  // is data size
+    return m_DataCount;  // is data size
 }
